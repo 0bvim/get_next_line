@@ -6,12 +6,13 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/16 15:05:47 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:44:39 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# endif
 
 // buffer to read
 # ifndef BUFFER_SIZE
@@ -21,6 +22,7 @@
 // libs
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <stdlib.h>
 
 // struct to be the static var
