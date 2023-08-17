@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/16 22:18:59 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/17 08:27:21 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*get_next_line(int fd)
 {
 	if (fd < 0)
 		return (NULL);
+	return ("c");
 }
 
 int	main()
@@ -27,7 +28,22 @@ int	main()
 
 	size_t rde = read (fd, buf, size);
 	printf("%d\n", fd);
-	printf("%d\n", rde);
+	printf("%zu\n", rde);
 	close (fd);
 	return (0);
 }
+
+t_char	*char_push(char sf)
+{
+	t_char	*new_fckr;
+
+	new_fckr = (t_char *)malloc(sizeof(t_char));
+
+	if (!new_fckr)
+		return (NULL);
+	new_fckr->single_fckr = sf;
+	new_fckr->next = NULL;
+
+	return (new_fckr);
+}
+
