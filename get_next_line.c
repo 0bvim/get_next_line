@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/18 16:24:07 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:30:36 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ char	*get_next_line(int fd)
 int	main(int argc, char **argv)
 {
 	int	fd = open(argv[1], O_RDONLY);
-	int	fd1 = open(argv[2], O_RDONLY);
-	int	fd2 = open(argv[3], O_RDONLY);
 	char	*retrn;
 
 	(void)argc;
 	retrn = "";
-	
 	while (retrn != NULL)
 	{
 		retrn = get_next_line(fd);
