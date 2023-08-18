@@ -15,7 +15,9 @@ BUTILS = get_next_line_utils_bonus.c
 HEADER = get_next_line.h
 BHEADER = get_next_line_bonus.h
 CFLAGS = -Wall -Wextra -Werror -g3 -O3 -I.
-
+DFLAGS = -Wall -Wextra -Werror -g3 -I.
+VALUE ?= 0
+SFLAGS ?= -D BUFFER_SIZE=$(VALUE)
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 #                COMPILATION                #
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
@@ -26,6 +28,10 @@ ifdef WITH_BONUS
 	HEADER += $(BHEADER)
 endif
 
+ifdef DEBUGGING
+	CFLAGS = $(DFLAGS)
+endif
+
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 #                COMPILATION                #
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
@@ -33,7 +39,14 @@ endif
 all: $(NAME)
 
 $(NAME): $(SRC)
-	@$(CC) $(CFLAGS) $< -o $@
+	@$(CC) $(SFLAGS) $(CFLAGS) $< -o $@
+
+## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+#                DEBUGGING                  #
+## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+
+deb:
+	@make DEBUGGING=TRUE --no-print-directory
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 #                BONUS COMP                 #

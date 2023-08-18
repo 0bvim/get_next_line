@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/18 02:55:20 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:59:18 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@
  * @param char The char of each struct.
  * @param *next The pointer to next struct (list / node).
  */
-typedef struct s_char	t_char;
-struct s_char
-{
-	char	single_char;
-	t_char	*next;
-};
+//typedef struct s_char	t_char;
+//struct s_char
+//{
+//	char	single_char;
+//	t_char	*next;
+//};
 
 /**
  * @brief Linked list to store fd infos
@@ -51,10 +51,10 @@ typedef struct s_file_info
 {
 	int				pos;
 	int				read;
-	int				len;
+//	int				len;
 	int				fd;
 	char			buffer[BUFFER_SIZE];
-	t_char			*string;
+//	t_char			*string;
 }t_file_info;
 
 /**
