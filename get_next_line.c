@@ -6,18 +6,15 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/17 08:27:21 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/17 22:52:10 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
-	if (fd < 0)
-		return (NULL);
-	return ("c");
+	t_char	*x;
 }
 
 int	main()
