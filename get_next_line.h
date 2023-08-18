@@ -6,22 +6,22 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/17 23:33:08 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/18 02:55:20 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-// buffer to read
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	10
-# endif
-
 // libs
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+// buffer to read
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif // BUFFER_SIZE
 
 // typedef and struct declaration
 /**
@@ -65,3 +65,5 @@ typedef struct s_file_info
  * when content ends, return NULL.
  */
 char	*get_next_line(int fd);
+
+#endif // GET_NEXT_LINE

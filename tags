@@ -61,14 +61,19 @@
 !_TAG_ROLE_DESCRIPTION!C++!macro	undef	/undefined/
 BUFFER_SIZE	get_next_line.h	/^#  define BUFFER_SIZE	/;"	d
 GET_NEXT_LINE_H	get_next_line.h	/^# define GET_NEXT_LINE_H$/;"	d
-char_next_last	get_next_line.h	/^void	char_next_last(t_char **head, t_char *set)$/;"	f	typeref:typename:void
+buffer	get_next_line.h	/^	char			buffer[BUFFER_SIZE];$/;"	m	struct:s_file_info	typeref:typename:char[]
 char_push	get_next_line.c	/^t_char	*char_push(char sf)$/;"	f	typeref:typename:t_char *
-char_push	get_next_line.h	/^t_char	*char_push(char sf)$/;"	f	typeref:typename:t_char *
+fd	get_next_line.h	/^	int				fd;$/;"	m	struct:s_file_info	typeref:typename:int
 get_next_line	README.md	/^# get_next_line/;"	c
 get_next_line	get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
-get_next_line	get_next_line.h	/^char	*get_next_line(int fd);$/;"	t	typeref:struct:char * ()(int fd)
+len	get_next_line.h	/^	int				len;$/;"	m	struct:s_file_info	typeref:typename:int
 main	get_next_line.c	/^int	main()$/;"	f	typeref:typename:int
 next	get_next_line.h	/^	t_char	*next;$/;"	m	struct:s_char	typeref:typename:t_char *
+pos	get_next_line.h	/^	int				pos;$/;"	m	struct:s_file_info	typeref:typename:int
+read	get_next_line.h	/^	int				read;$/;"	m	struct:s_file_info	typeref:typename:int
 s_char	get_next_line.h	/^struct s_char$/;"	s
+s_file_info	get_next_line.h	/^typedef struct s_file_info$/;"	s
 single_char	get_next_line.h	/^	char	single_char;$/;"	m	struct:s_char	typeref:typename:char
+string	get_next_line.h	/^	t_char			*string;$/;"	m	struct:s_file_info	typeref:typename:t_char *
 t_char	get_next_line.h	/^typedef struct s_char	t_char;$/;"	t	typeref:struct:s_char
+t_file_info	get_next_line.h	/^}t_file_info;$/;"	t	typeref:struct:s_file_info

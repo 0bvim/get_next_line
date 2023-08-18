@@ -6,11 +6,11 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:40:15 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/16 14:42:23 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/18 03:16:05 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_.h"
+#include "get_next_line.h"
 
 /**
  * aux functions
