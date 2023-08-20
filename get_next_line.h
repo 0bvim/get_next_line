@@ -6,35 +6,35 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/18 15:59:18 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:24:49 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-// libs
+/* libs */
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 
-// buffer to read
+/* buffer to read */
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 50
-# endif // BUFFER_SIZE
+# endif /* BUFFER_SIZE */
 
-// typedef and struct declaration
+/* typedef and struct declaration */
 /**
  * @brief Linked list to store char by char
  * @param char The char of each struct.
  * @param *next The pointer to next struct (list / node).
  */
-//typedef struct s_char	t_char;
-//struct s_char
-//{
-//	char	single_char;
-//	t_char	*next;
-//};
+typedef struct s_char	t_char;
+struct s_char
+{
+	char	single_char;
+	t_char	*next;
+};
 
 /**
  * @brief Linked list to store fd infos
@@ -51,10 +51,10 @@ typedef struct s_file_info
 {
 	int				pos;
 	int				read;
-//	int				len;
+	int				len;
 	int				fd;
 	char			buffer[BUFFER_SIZE];
-//	t_char			*string;
+	t_char			*string;
 }t_file_info;
 
 /**
@@ -66,4 +66,4 @@ typedef struct s_file_info
  */
 char	*get_next_line(int fd);
 
-#endif // GET_NEXT_LINE
+#endif /* GET_NEXT_LINE */

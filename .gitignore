@@ -1,3 +1,7 @@
+# Remove comment of files below to don't send to vogsphere
+# LICENSE
+# README.md
+# .gitignore
 # Prerequisites
 *.d
 
