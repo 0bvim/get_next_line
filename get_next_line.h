@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/20 17:24:49 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:50:47 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,12 @@ typedef struct s_file_info
  * when content ends, return NULL.
  */
 char	*get_next_line(int fd);
+
+/**
+ * @brief this function receive letter from buffer and store it
+ * in a string to return.
+ * @param t_file_info Is to store string.
+ * @param t_char Store characters node by node.
+ */
 
 #endif /* GET_NEXT_LINE */
