@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/21 16:25:22 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:28:23 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*get_next_line(int fd)
 {
 	static t_file_info	file[1024];
+
 	if (file[fd].pos >= file[fd].read || file[fd].pos == 0)
 	{
 		file[fd].pos = 0;
@@ -28,7 +29,7 @@ char	*get_next_line(int fd)
 	}
 	if (file[fd].read <= 0 || file[fd].buffer[file[fd].pos] == '\0')
 		return (NULL);
-	return (ft_read_line(&file));
+	return (ft_read_line(&file[fd]));
 }
 
 char	*ft_read_line(t_file_info *info)
