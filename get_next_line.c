@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/20 18:55:40 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/20 22:43:19 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 char	*get_next_line(int fd)
 {
 	static t_file_info	file;
-	
+
 	if (file.pos >= file.read || file.pos == 0)
 	{
 		file.pos = 0;
@@ -30,16 +30,24 @@ char	*get_next_line(int fd)
 	}
 	if (file.read <= 0 || file.buffer[file.pos] == '\0')
 		return (NULL);
-	return (ft_build_str(&file));
+	return (ft_read_line(&file));
 }
 
-static char	*ft_read_line
+static char	*ft_read_line(t_file_info *info)
+{
+	info->len = 0;
+	while (TRUE)
+	{
+		link_letter(&info->str, get_letter(*(info->buffer + info->pos)));
+	}
+}
 
 int	main(int argc, char **argv)
 {
-	int	fd = open(argv[1], O_RDONLY);
+	int		fd;
 	char	*retrn;
 
+	fd = open(argv[1], O_RDONLY);
 	(void)argc;
 	retrn = "";
 	while (retrn != NULL)
@@ -50,4 +58,3 @@ int	main(int argc, char **argv)
 	close (fd);
 	return (0);
 }
-

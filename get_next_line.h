@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/20 18:50:47 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/20 23:28:34 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@
 /* buffer to read */
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 50
+
+/* defines to improve code visual */
+#  define TRUE 1
+#  define FALSE 0
 # endif /* BUFFER_SIZE */
 
 /* typedef and struct declaration */
 /**
- * @brief Linked list to store char by char
+ * @brief Linked list to store char by char.
  * @param char The char of each struct.
  * @param *next The pointer to next struct (list / node).
  */
@@ -37,13 +41,13 @@ struct s_char
 };
 
 /**
- * @brief Linked list to store fd infos
+ * @brief Linked list to store fd infos.
  * @param pos Position to read fd content.
  * @param read Receive C function 'read' (man 3 read for more info).
  * @param len Lenght of string until '\n' or '\0'.
  * @param fd Is the file descriptor (given param of GNL function).
- * @param buffer[BUFFER_SIZE] Is the buffer that
- * keep the same value of defined BUFFER_SIZE
+ * @param buffer[BUFFER_SIZE] Is the buffer that.
+ * keep the same value of defined BUFFER_SIZE.
  * @param t_char *string Is a struct to store next string char
  * by char until '\n' or '\0'.
  */
@@ -58,7 +62,7 @@ typedef struct s_file_info
 }t_file_info;
 
 /**
- * @brief This function read a buffer and return next line
+ * @brief This function read a buffer and return next line.
  * until the content end.
  * @param fd Number of file descriptor to read.
  * @return char Return line by line in fd given as a parameter and
@@ -67,10 +71,25 @@ typedef struct s_file_info
 char	*get_next_line(int fd);
 
 /**
- * @brief this function receive letter from buffer and store it
- * in a string to return.
- * @param t_file_info Is to store string.
- * @param t_char Store characters node by node.
+ * @brief This function create a new node.
+ * @param char Need of a character to set as a value.
+ * @return t_char A node with value and a NULL pointer to the next node.
  */
+t_char	*get_letter(char letter);
+
+/**
+ * @brief This function get a new node and
+ * put it at the end of linked list.
+ * @param t_char Need of a struct address.
+ * @param head Need of a pointer to a struct.
+ * @return void This function only change content.
+ */
+void	link_letter(t_char **head, t_char *new_letter);
+
+/**
+ * @brief This function get content from file->buffer and
+ * read character until new_line
+ */
+static char	*ft_read_line(t_file_info *info)
 
 #endif /* GET_NEXT_LINE */
