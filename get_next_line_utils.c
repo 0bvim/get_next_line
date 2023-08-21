@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:40:15 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/20 23:03:15 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/21 00:34:56 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	link_letter(t_char **head, t_char *new_letter)
 	if (!*head)
 	{
 		*head = new_letter;
+		return ;
 	}
 	aux = *head;
 	while (aux->next)

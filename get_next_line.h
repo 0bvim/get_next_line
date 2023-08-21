@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/20 23:28:34 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/21 00:32:36 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 /* buffer to read */
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 50
-
-/* defines to improve code visual */
-#  define TRUE 1
-#  define FALSE 0
 # endif /* BUFFER_SIZE */
 
 /* typedef and struct declaration */
@@ -88,8 +84,12 @@ void	link_letter(t_char **head, t_char *new_letter);
 
 /**
  * @brief This function get content from file->buffer and
- * read character until new_line
+ * read file content until new_line or end of string.
+ * and store it in t_char *string.
+ * @param t_file_info A pointer do a struct.
+ * @return char * A string to get_next_line function.
  */
-static char	*ft_read_line(t_file_info *info)
+char	*ft_read_line(t_file_info *info);
 
+char	*ft_build_line(t_file_info *set);
 #endif /* GET_NEXT_LINE */

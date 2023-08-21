@@ -8,10 +8,9 @@ NAME = get_next_line
 #                VARIABLES                  #
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 
-SRC = get_next_line.c
-BSRC = get_next_line_bonus.c
-UTILS = get_next_line_utils.c
-BUTILS = get_next_line_utils_bonus.c
+SRC = ./get_next_line.c ./get_next_line_utils.c
+OBJ = $(SRC:.c=.o)
+BSRC = get_next_line_bonus.c get_next_line_utils_bonus.c
 HEADER = get_next_line.h
 BHEADER = get_next_line_bonus.h
 CFLAGS = -Wall -Wextra -Werror -g3 -O3 -I.
@@ -24,7 +23,6 @@ SFLAGS ?= -D BUFFER_SIZE=$(VALUE)
 
 ifdef WITH_BONUS
 	SRC += $(BSRC)
-	UTILS += $(BUTILS)
 	HEADER += $(BHEADER)
 endif
 
@@ -38,8 +36,8 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	@$(CC) $(SFLAGS) $(CFLAGS) $< -o $@
+$(NAME): $(OBJ)
+	@$(CC) $(SFLAGS) $(CFLAGS) $(OBJ) -o $@
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 #                DEBUGGING                  #
@@ -60,7 +58,7 @@ bonus:
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 
 clean:
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(OBJ)
 
 fclean: clean
 
