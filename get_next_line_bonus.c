@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/22 20:31:50 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:45:39 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,68 +89,3 @@ char	*ft_build_line(t_file_info *set)
 	line[count] = '\0';
 	return (line);
 }
-//#include <stdio.h>
-//int	main(int argc, char **argv)
-//{
-//	int		fd;
-//	int		fd1;
-//	int		fd2;
-//	int		fd3;
-//	char	*retrn;
-//
-//	fd = open(argv[1], O_RDONLY);
-//	fd1 = open(argv[2], O_RDONLY);
-//	(void)argc;
-//	retrn = "";
-//	while (retrn != NULL)
-//	{
-//		retrn = get_next_line(fd);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd1);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd1);
-//		printf("%s", retrn);
-//		free(retrn);
-//	}
-//	close (fd);
-//	return (0);
-//}
-//#include <string.h>
-//int	main(int argc, char **argv)
-//{
-//	int		fd;
-//	char	*retrn;
-//	char	input[100];
-//	char	*keyword = "exit\n";
-//
-//	fd = open(argv[1], O_RDONLY);
-//	(void)argc;
-//	while (retrn != null)
-//	{
-//		printf("ENTER -> Get next line or type exit to quit.\n");
-//		fgets(input, sizeof(input), stdin);
-//		if (strcmp(input, keyword) == 0)
-//		{
-//			printf("\nBye");
-//			break ;
-//		}
-//		retrn = get_next_line(fd);
-//		if (retrn != NULL)
-//		{
-//			printf("%s", retrn);
-//			retrn = get_next_line(fd);
-//		}
-//		else
-//		{
-//			printf("\nCya");
-//			break ;
-//		}
-//	}
-//	close (fd);
-//	return (0);
-//}
