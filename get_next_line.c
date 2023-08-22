@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/22 18:18:29 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:29:33 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 {
 	static t_file_info	file;
 
-	if ((!fd || fd < 0)  && fd != 0)
+	if ((!fd || fd < 0) && fd != 0)
 		return (NULL);
 	if (file.pos >= file.read || file.pos == 0)
 	{
@@ -28,6 +28,8 @@ char	*get_next_line(int fd)
 		file.len = 0;
 		file.fd = fd;
 		file.read = read(fd, file.buffer, BUFFER_SIZE);
+		if (file.read == -1)
+			return (free_str(file.string));
 	}
 	if (file.read <= 0 || file.buffer[file.pos] == '\0')
 	{
@@ -41,9 +43,6 @@ char	*get_next_line(int fd)
 char	*ft_read_line(t_file_info *info)
 {
 	info->len = 0;
-	if (info->read > 0)
-	{
-
 	while (1)
 	{
 		link_letter(&info->string, get_letter(*(info->buffer + info->pos)));
@@ -56,6 +55,8 @@ char	*ft_read_line(t_file_info *info)
 		{
 			info->pos = 0;
 			info->read = read (info->fd, info->buffer, BUFFER_SIZE);
+			if (info->read == -1)
+				return (free_str(info->string));
 			if (info->read <= 0)
 				break ;
 		}
@@ -63,7 +64,6 @@ char	*ft_read_line(t_file_info *info)
 	info->pos++;
 	info->len++;
 	return (ft_build_line(info));
-	}
 }
 
 char	*ft_build_line(t_file_info *set)
