@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/22 15:02:16 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:18:29 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 {
 	static t_file_info	file;
 
-	if (!fd && fd != 0)
+	if ((!fd || fd < 0)  && fd != 0)
 		return (NULL);
 	if (file.pos >= file.read || file.pos == 0)
 	{
@@ -41,6 +41,9 @@ char	*get_next_line(int fd)
 char	*ft_read_line(t_file_info *info)
 {
 	info->len = 0;
+	if (info->read > 0)
+	{
+
 	while (1)
 	{
 		link_letter(&info->string, get_letter(*(info->buffer + info->pos)));
@@ -60,6 +63,7 @@ char	*ft_read_line(t_file_info *info)
 	info->pos++;
 	info->len++;
 	return (ft_build_line(info));
+	}
 }
 
 char	*ft_build_line(t_file_info *set)
@@ -70,7 +74,10 @@ char	*ft_build_line(t_file_info *set)
 
 	line = (char *)malloc((set->len + 1) * sizeof(char));
 	if (!line)
+	{
+		free(line);
 		return (NULL);
+	}
 	count = 0;
 	next = NULL;
 	while (set->string)
