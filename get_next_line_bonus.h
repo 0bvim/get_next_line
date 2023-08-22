@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:17:45 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/21 16:22:45 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:27:45 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_file_info
  * @return char Return line by line in fd given as a parameter and
  * when content ends, return NULL.
  */
-char	*get_next_line_bonus(int fd);
+char	*get_next_line(int fd);
 
 /**
  * @brief This function create a new node.
@@ -92,4 +92,6 @@ void	link_letter(t_char **head, t_char *new_letter);
 char	*ft_read_line(t_file_info *info);
 
 char	*ft_build_line(t_file_info *set);
+
+char	*free_str(t_char *string);
 #endif /* GET_NEXT_LINE */

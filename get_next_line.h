@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/21 13:12:37 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:45:04 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,6 @@ void	link_letter(t_char **head, t_char *new_letter);
 char	*ft_read_line(t_file_info *info);
 
 char	*ft_build_line(t_file_info *set);
+
+char	*free_str(t_char *string);
 #endif /* GET_NEXT_LINE */

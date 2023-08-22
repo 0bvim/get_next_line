@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/21 16:28:09 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:02:16 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*get_next_line(int fd)
 {
 	static t_file_info	file;
 
+	if (!fd && fd != 0)
+		return (NULL);
 	if (file.pos >= file.read || file.pos == 0)
 	{
 		file.pos = 0;
@@ -28,7 +30,11 @@ char	*get_next_line(int fd)
 		file.read = read(fd, file.buffer, BUFFER_SIZE);
 	}
 	if (file.read <= 0 || file.buffer[file.pos] == '\0')
+	{
+		if (file.read < 0 && file.string)
+			free_str(file.string);
 		return (NULL);
+	}
 	return (ft_read_line(&file));
 }
 
@@ -78,44 +84,18 @@ char	*ft_build_line(t_file_info *set)
 	line[count] = '\0';
 	return (line);
 }
+//#include <stdio.h>
 //int	main(int argc, char **argv)
 //{
 //	int		fd;
-//	int		fd1;
-//	int		fd2;
-//	int		fd3;
 //	char	*retrn;
 //
 //	fd = open(argv[1], O_RDONLY);
-//	fd1 = open(argv[2], O_RDONLY);
-//	fd2 = open(argv[3], O_RDONLY);
-//	fd3 = open(argv[4], O_RDONLY);
 //	(void)argc;
 //	retrn = "";
 //	while (retrn != NULL)
 //	{
 //		retrn = get_next_line(fd);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd1);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd2);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd3);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd1);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd2);
-//		printf("%s", retrn);
-//		free(retrn);
-//		retrn = get_next_line(fd3);
 //		printf("%s", retrn);
 //		free(retrn);
 //	}
