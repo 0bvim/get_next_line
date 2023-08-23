@@ -4,6 +4,7 @@
 # .gitignore
 others/
 .gitignore
+tovog/
 # Prerequisites
 *.d
 
