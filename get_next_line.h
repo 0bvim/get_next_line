@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:23:40 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/23 14:21:42 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:44:43 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	link_letter(t_char **head, t_char *new_letter);
  * @param t_file_info A pointer do a struct.
  * @return char * A string to get_next_line function.
  */
-char	*ft_read_line(t_file_info *info);
+char	*ft_read_line(t_file_info *file);
 
 /**
  * @brief This function concatenate the lines that were read
@@ -99,7 +99,7 @@ char	*ft_read_line(t_file_info *info);
  * @return String to be returned with ('\n') and
  * null byte ('\0') at the end of string.
  */
-char	*ft_build_line(t_file_info *set);
+char	*ft_build_line(t_file_info *file);
 
 /**
  * @brief Receive the HEAD node and roam node by node

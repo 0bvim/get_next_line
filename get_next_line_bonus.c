@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/22 20:45:39 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:46:41 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,49 +41,47 @@ char	*get_next_line(int fd)
 	return (ft_read_line(&file[fd]));
 }
 
-char	*ft_read_line(t_file_info *info)
+char	*ft_read_line(t_file_info *file)
 {
-	info->len = 0;
-	while (1)
+	file->len = 0;
+	while (file->read > 0)
 	{
-		link_letter(&info->string, get_letter(*(info->buffer + info->pos)));
-		if (*(info->buffer + info->pos) == '\n'
-			|| *(info->buffer + info->pos) == '\0')
+		link_letter(&file->string, get_letter(*(file->buffer + file->pos)));
+		if (*(file->buffer + file->pos) == '\n'
+			|| *(file->buffer + file->pos) == '\0')
 			break ;
-		info->pos++;
-		info->len++;
-		if (info->pos >= info->read)
+		file->pos++;
+		file->len++;
+		if (file->pos >= file->read)
 		{
-			info->pos = 0;
-			info->read = read (info->fd, info->buffer, BUFFER_SIZE);
-			if (info->read == -1)
-				return (free_str(info->string));
-			if (info->read <= 0)
-				break ;
+			file->pos = 0;
+			file->read = read (file->fd, file->buffer, BUFFER_SIZE);
+			if (file->read == -1)
+				return (free_str(file->string));
 		}
 	}
-	info->pos++;
-	info->len++;
-	return (ft_build_line(info));
+	file->pos++;
+	file->len++;
+	return (ft_build_line(file));
 }
 
-char	*ft_build_line(t_file_info *set)
+char	*ft_build_line(t_file_info *file)
 {
 	t_char	*next;
 	char	*line;
 	int		count;
 
-	line = (char *)malloc((set->len + 1) * sizeof(char));
-	if (!(line || set->fd) && set->fd != 0)
+	line = (char *)malloc((file->len + 1) * sizeof(char));
+	if (!(line || file->fd) && file->fd != 0)
 		return (NULL);
 	count = 0;
 	next = NULL;
-	while (set->string)
+	while (file->string)
 	{
-		next = set->string->next;
-		line[count] = set->string->single_char;
-		free(set->string);
-		set->string = next;
+		next = file->string->next;
+		line[count] = file->string->single_char;
+		free(file->string);
+		file->string = next;
 		count++;
 	}
 	line[count] = '\0';
