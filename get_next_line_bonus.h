@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:17:45 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/22 14:27:45 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:26:20 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ struct s_char
  * @param fd Is the file descriptor (given param of GNL function).
  * @param buffer[BUFFER_SIZE] Is the buffer that.
  * keep the same value of defined BUFFER_SIZE.
- * @param t_char *string Is a struct to store next string char
+ * @param t_char *string Is a struct to store string char
  * by char until '\n' or '\0'.
  */
 typedef struct s_file_info
@@ -91,7 +91,22 @@ void	link_letter(t_char **head, t_char *new_letter);
  */
 char	*ft_read_line(t_file_info *info);
 
+/**
+ * @brief This function concatenate the lines that were read
+ * with '\0' (null byte). And 'free' nodes which memory was
+ * allocated.
+ * @param t_file_info *file Is the struct that contains all
+ * variables to be manipulated.
+ * @return String to be returned with ('\n') and
+ * null byte ('\0') at the end of string.
+ */
 char	*ft_build_line(t_file_info *set);
 
+/**
+ * @brief Receive the HEAD node and roam node by node
+ * and free memory that was allocated.
+ * @param t_char *string First node of the linked list.
+ * @return Clean linked list nodes.
+ */
 char	*free_str(t_char *string);
 #endif /* GET_NEXT_LINE */
