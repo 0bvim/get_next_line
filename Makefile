@@ -8,13 +8,13 @@ NAME = get_next_line
 #                VARIABLES                  #
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 
-SRC = ./get_next_line.c ./get_next_line_utils.c
+SRC = ./get_next_line.c ./get_next_line_utils.c ./main.c
 OBJ = $(SRC:.c=.o)
-BSRC = get_next_line_bonus.c get_next_line_utils_bonus.c
+BSRC = get_next_line_bonus.c get_next_line_utils_bonus.c ./main.c
 HEADER = get_next_line.h
 BHEADER = get_next_line_bonus.h
-CFLAGS = -Wall -Wextra -Werror -g3 -O3 -I.
-DFLAGS = -Wall -Wextra -Werror -g3 -I.
+CFLAGS = -Wall -Wextra -Werror -g3 -O3 -I./includes
+DFLAGS = -Wall -Wextra -Werror -g3 -I./includes
 VALUE ?= 0
 SFLAGS ?= -D BUFFER_SIZE=$(VALUE)
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
@@ -22,7 +22,7 @@ SFLAGS ?= -D BUFFER_SIZE=$(VALUE)
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 
 ifdef WITH_BONUS
-	SRC += $(BSRC)
+	SRC = $(BSRC)
 	HEADER += $(BHEADER)
 endif
 
