@@ -1,71 +1,101 @@
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                FILE NAME                  #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/16 18:33:08 by vde-frei          #+#    #+#              #
+#    Updated: 2023/10/16 19:29:08 by vde-frei         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = get_next_line
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                VARIABLES                  #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+SHELL := /bin/bash
+COUNT := 0
+SLEEP := sleep 0.5
 
-SRC = ./get_next_line.c ./get_next_line_utils.c ./main.c
-OBJ = $(SRC:.c=.o)
-BSRC = get_next_line_bonus.c get_next_line_utils_bonus.c ./main.c
-HEADER = get_next_line.h
-BHEADER = get_next_line_bonus.h
-CFLAGS = -Wall -Wextra -Werror -g3 -O3 -I./includes
-DFLAGS = -Wall -Wextra -Werror -g3 -I./includes
-VALUE ?= 0
+BLACK  		 = \033[0;30m
+RED    		 = \033[0;31m
+GREEN  		 = \033[0;32m
+YELLOW 		 = \033[0;33m
+BLUE   		 = \033[0;34m
+MAGENTA		 = \033[0;35m
+CYAN   		 = \033[0;36m
+WHITE  		 = \033[0;37m
+RESET  		 = \033[0m
+
+MANDATORY = Executable compiled
+LBONUS = Bonus Executable compiled
+CLEAN = Objects delete
+FCLEAN = Program deleted
+LIBNAME = GNL
+BLIBNAME = GNL Bonus
+COMP = Compiling
+
+DFLAGS = -Wall -Wextra -Werror -g3 # TO DEBBUG
+CFLAGS = -Wall -Werror -Wextra -O3 -fomit-frame-pointer -finline-functions # TO IMPROVE PERFORMANCE
+
+SRC = src
+BONUS = src/bonus
+INC = includes
+OBJ = obj
+
+INCLUDES = -I$(INC)/
+
+CFILES = $(addprefix $(SRC)/, get_next_line.c get_next_line_utils.c main.c)
+
+BFILES = $(addprefix $(BONUS)/, get_next_line_bonus.c get_next_line_utils_bonus.c main.c)
+
+OBJECT =  $(patsubst %, $(OBJ)/%, $(notdir $(CFILES:.c=.o)))
+
+VALUE ?= 10
 SFLAGS ?= -D BUFFER_SIZE=$(VALUE)
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                COMPILATION                #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
 
 ifdef WITH_BONUS
-	SRC = $(BSRC)
-	HEADER += $(BHEADER)
+	CFILES = $(BFILES)
+	MANDATORY = $(LBONUS)
+	MAGENTA = $(YELLOW)
+	LIBNAME = $(BLIBNAME)
+	SRC = $(BONUS)
 endif
 
-ifdef DEBUGGING
+ifdef WITH_DEBBUG
 	CFLAGS = $(DFLAGS)
 endif
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                COMPILATION                #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+all: $(OBJ) $(NAME)
 
-all: $(NAME)
+$(NAME): $(OBJECT)
+	@$(CC) $(CFLAGS) $(SFLAGS) -o $@ $^
+	@$(SLEEP)
+	@printf "\n$(MAGENTA)$(MANDATORY)\n$(RESET)"
 
-$(NAME): $(OBJ)
-	@$(CC) $(SFLAGS) $(CFLAGS) $(OBJ) -o $@
+$(OBJ):
+	@mkdir -p $(OBJ)
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                DEBUGGING                  #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+$(OBJ)/%.o: $(SRC)/%.c
+	@$(eval COUNT=$(shell expr $(COUNT) + 1))
+	@$(CC) $(CFLAGS) $(INCLUDES) $(SFLAGS) -c $< -o $@
+	@printf "$(GREEN)$(LIBNAME) $(COMP) %d%%\r$(RESET)" $$(echo $$(($(COUNT) * 100 / $(words $(CFILES)))))
 
-deb:
-	@make DEBUGGING=TRUE --no-print-directory
+clean:
+	@$(RM) -rf $(OBJ)
+	@$(SLEEP)
+	@printf "$(RED)$(CLEAN)$(RESET)\n"
 
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                BONUS COMP                 #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+fclean: clean
+	@$(RM) $(NAME)
+	@$(SLEEP)
+	@printf "$(RED)$(FCLEAN)$(RESET)\n"
+
+re: fclean all
 
 bonus:
 	@make WITH_BONUS=TRUE --no-print-directory
 
-bonusdeb:
-	@make WITH_BONUS=TRUE DEBUGGING=TRUE --no-print-directory
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                CLEAN FILE                 #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
+debbug:
+	@make WITH_DEBBUG=TRUE --no-print-directory
 
-clean:
-	@rm -f $(NAME) *.o
-
-fclean: clean
-
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-#                   REMAKE                  #
-## ## ## ## ## ## ## ## ## ## ## ## ## ## # #
-
-re: clean all
+.PHONY: all bonus clean fclean re debbug
