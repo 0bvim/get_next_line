@@ -6,7 +6,7 @@
 #    By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 18:33:08 by vde-frei          #+#    #+#              #
-#    Updated: 2023/10/16 19:29:08 by vde-frei         ###   ########.fr        #
+#    Updated: 2023/10/18 07:32:12 by vde-frei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,9 @@ fclean: clean
 re: fclean all
 
 bonus:
+	@$(RM) -rf $(OBJ)
 	@make WITH_BONUS=TRUE --no-print-directory
+	@$(RM) -rf $(OBJ)
 
 debbug:
 	@make WITH_DEBBUG=TRUE --no-print-directory
