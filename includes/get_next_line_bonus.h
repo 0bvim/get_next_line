@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:17:45 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/23 14:46:21 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/17 11:52:48 by nivicius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 /* libs */
-# include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 
@@ -22,6 +21,14 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 50
 # endif /* BUFFER_SIZE */
+
+/* enums */
+enum e_defs
+{
+	IN,
+	CHAR,
+	FAIL = -1,
+};
 
 /* typedef and struct declaration */
 /**
@@ -44,18 +51,18 @@ struct s_char
  * @param fd Is the file descriptor (given param of GNL function).
  * @param buffer[BUFFER_SIZE] Is the buffer that.
  * keep the same value of defined BUFFER_SIZE.
- * @param t_char *string Is a struct to store string char
+ * @param t_char *list Is a struct to store list char
  * by char until '\n' or '\0'.
  */
-typedef struct s_file_info
+typedef struct s_gnl
 {
 	int				pos;
 	int				read;
 	int				len;
 	int				fd;
 	char			buffer[BUFFER_SIZE];
-	t_char			*string;
-}t_file_info;
+	t_char			*list;
+}t_gnl;
 
 /**
  * @brief This function read a buffer and return next line.
@@ -85,28 +92,38 @@ void	link_letter(t_char **head, t_char *new_letter);
 /**
  * @brief This function get content from file->buffer and
  * read file content until new_line or end of string.
- * and store it in t_char *string.
- * @param t_file_info A pointer do a struct.
+ * and store it in t_char *list.
+ * @param t_gnl A pointer do a struct.
  * @return char * A string to get_next_line function.
  */
-char	*ft_read_line(t_file_info *file);
+char	*ft_read_line(t_gnl *file);
 
 /**
  * @brief This function concatenate the lines that were read
  * with '\0' (null byte). And 'free' nodes which memory was
  * allocated.
- * @param t_file_info *file Is the struct that contains all
+ * @param t_gnl *file Is the struct that contains all
  * variables to be manipulated.
  * @return String to be returned with ('\n') and
  * null byte ('\0') at the end of string.
  */
-char	*ft_build_line(t_file_info *file);
+char	*ft_build_line(t_gnl *file);
 
 /**
  * @brief Receive the HEAD node and roam node by node
  * and free memory that was allocated.
- * @param t_char *string First node of the linked list.
+ * @param t_char *list First node of the linked list.
  * @return Clean linked list nodes.
  */
 char	*free_str(t_char *string);
+
+/**
+ * @brief This function initialize t_gnl struct.
+ * @param t_gnl *file Is the struct that contains all
+ * variables to be inited.
+ * @param fd file descriptor received.
+ * @return t_gnl with initialized values.
+ */
+t_gnl	init_gnl(t_gnl *gnl, int fd);
+
 #endif /* GET_NEXT_LINE */

@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 #include <stdlib.h>
 # include <fcntl.h>
@@ -22,7 +22,6 @@ int main()
 	}
     close(fd);
     close(fd1);
-    printf("%s", t);
-    printf("%s", t1);
+	return (EXIT_SUCCESS);
 }
 
