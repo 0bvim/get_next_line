@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:40:15 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/08/22 20:30:02 by vde-frei         ###   ########.fr       */
+/*   Updated: 2023/12/17 02:52:53 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ char	*free_str(t_char *string)
 	}
 	temp = NULL;
 	return (NULL);
+}
+
+t_gnl	init_gnl(t_gnl *gnl, int fd)
+{
+	gnl->pos = 0;
+	while (gnl->pos < BUFFER_SIZE)
+		gnl->buffer[gnl->pos++] = '\0';
+	gnl->pos = 0;
+	gnl->list = NULL;
+	gnl->len = 0;
+	gnl->fd = fd;
+	gnl->read = read(fd, gnl->buffer, BUFFER_SIZE);
+	return (*gnl);
 }
