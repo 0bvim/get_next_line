@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nivicius <nivicius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 14:32:39 by vde-frei          #+#    #+#             */
-/*   Updated: 2023/12/17 11:57:29 by nivicius         ###   ########.fr       */
+/*   Updated: 2023/12/18 15:22:28 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*get_next_line(int fd)
 	if (gnl[fd].pos >= gnl[fd].read || gnl[fd].pos == IN)
 	{
 		gnl[fd] = init_gnl(&gnl[fd], fd);
-		if (gnl[fd].read == -1 || gnl[fd].read < 0 || gnl[fd].buffer[gnl[fd].pos] == '\0')
+		if (gnl[fd].read == -1 || gnl[fd].read < 0
+			|| gnl[fd].buffer[gnl[fd].pos] == '\0')
 		{
 			if (gnl[fd].list)
 				return (free_str(gnl[fd].list));
