@@ -14,7 +14,7 @@ NAME = get_next_line
 
 SHELL := /bin/bash
 COUNT := 0
-SLEEP := sleep 0.5
+SLEEP := sleep 0.1
 
 BLACK  		 = \033[0;30m
 RED    		 = \033[0;31m
